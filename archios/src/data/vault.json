@@ -1,0 +1,57 @@
+[
+  {
+    "id": "vault-001",
+    "title": "Flood Risk Mapping — Field Survey Notes",
+    "description": "Raw field notes from ground-truth validation of satellite-derived flood zones. Includes GPS coordinates and site photographs.",
+    "type": "notes",
+    "fileSize": "2.4 MB",
+    "isPublic": false,
+    "projectId": "proj-001",
+    "createdAt": "2025-01-10",
+    "tags": ["GIS", "Field Survey", "Flood Mapping"]
+  },
+  {
+    "id": "vault-002",
+    "title": "Structural Analysis — Assignment Report",
+    "description": "Full report documenting the beam and slab load analysis tool including methodology, validation, and code walkthrough.",
+    "type": "report",
+    "fileSize": "1.8 MB",
+    "isPublic": true,
+    "projectId": "proj-002",
+    "createdAt": "2025-01-25",
+    "tags": ["Structural Engineering", "Report", "Academic"]
+  },
+  {
+    "id": "vault-003",
+    "title": "GIS Flood Risk — Training Dataset",
+    "description": "Labelled satellite image patches used for flood classification model training. Includes class distribution statistics.",
+    "type": "dataset",
+    "fileSize": "156 MB",
+    "isPublic": false,
+    "projectId": "proj-001",
+    "createdAt": "2025-01-08",
+    "tags": ["Dataset", "Machine Learning", "Remote Sensing"]
+  },
+  {
+    "id": "vault-004",
+    "title": "ArchiOS System Architecture",
+    "description": "Architectural diagrams and planning documents for the Digital Engineering OS platform.",
+    "type": "notes",
+    "fileSize": "0.8 MB",
+    "isPublic": true,
+    "projectId": "proj-003",
+    "createdAt": "2025-05-10",
+    "tags": ["Architecture", "Web Development", "Planning"]
+  },
+  {
+    "id": "vault-005",
+    "title": "Research Paper — Remote Sensing for Urban Flood Assessment",
+    "description": "Literature review compilation covering 15 papers on satellite-based flood mapping methods, 2015-2024.",
+    "type": "research",
+    "fileSize": "3.2 MB",
+    "isPublic": false,
+    "projectId": "proj-001",
+    "createdAt": "2024-11-20",
+    "tags": ["Research", "Remote Sensing", "Flood", "Literature Review"]
+  }
+]

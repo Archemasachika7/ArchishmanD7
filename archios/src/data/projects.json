@@ -1,0 +1,282 @@
+[
+  {
+    "id": "proj-001",
+    "slug": "gis-flood-mapping",
+    "title": "GIS-Based Flood Risk Mapping",
+    "subtitle": "Remote sensing + ML for flood vulnerability analysis",
+    "description": "An automated pipeline that ingests satellite imagery and DEM data to produce flood risk maps using terrain analysis and machine learning classification. Integrated with QGIS for visualization and field validation workflows.",
+    "category": "GIS & Remote Sensing",
+    "tags": ["Manual + AI", "Research Based"],
+    "status": "active",
+    "currentStage": "development",
+    "isPublic": true,
+    "isPending": false,
+    "featured": true,
+    "githubUrl": "https://github.com/archemasachika7",
+    "liveUrl": null,
+    "thumbnail": null,
+    "tech": ["Python", "QGIS", "Google Earth Engine", "scikit-learn", "GeoPandas"],
+    "evolution": [
+      {
+        "stage": "idea",
+        "title": "Initial Concept",
+        "description": "Identified the need for automated flood risk assessment after studying manual surveying limitations.",
+        "date": "2024-09",
+        "completed": true
+      },
+      {
+        "stage": "planning",
+        "title": "Research & Planning",
+        "description": "Reviewed literature on remote sensing-based flood mapping. Defined dataset requirements and processing pipeline architecture.",
+        "date": "2024-10",
+        "completed": true
+      },
+      {
+        "stage": "development",
+        "title": "Pipeline Development",
+        "description": "Building the satellite data ingestion, DEM processing, and ML classification modules. Currently integrating Google Earth Engine API.",
+        "date": "2025-01",
+        "completed": false
+      },
+      {
+        "stage": "deployment",
+        "title": "QGIS Plugin & Web Dashboard",
+        "description": "Package as a QGIS plugin and build a lightweight web dashboard for non-GIS users.",
+        "date": null,
+        "completed": false
+      },
+      {
+        "stage": "future",
+        "title": "Real-time SAR Integration",
+        "description": "Integrate Sentinel-1 SAR data for near-real-time flood detection during active events.",
+        "date": null,
+        "completed": false
+      }
+    ],
+    "journal": {
+      "id": "journal-001",
+      "projectId": "proj-001",
+      "date": "2025-01-15",
+      "problemsFaced": [
+        "Google Earth Engine API rate limits causing processing delays",
+        "Inconsistent DEM resolution across study area",
+        "Cloud cover in optical imagery — 60% of Sentinel-2 images unusable"
+      ],
+      "failedAttempts": [
+        "Tried using Landsat 8 initially — spatial resolution too coarse for urban flood mapping",
+        "First ML model (Random Forest) overfit on training tiles with zero flood events",
+        "SRTM DEM had artefacts over water bodies that corrupted terrain analysis"
+      ],
+      "lessonsLearned": [
+        "SAR data is far superior to optical for active flood mapping — it penetrates clouds",
+        "Stratified sampling for train/test split is essential when classes are heavily imbalanced",
+        "Always validate DEM data quality before running terrain derivatives"
+      ],
+      "futureWork": [
+        "Expand to river basin scale with hydrological routing",
+        "Add uncertainty quantification to ML predictions",
+        "Explore transfer learning from flood events in other geographies"
+      ],
+      "notes": "This project is teaching me more about data quality than about ML. The engineering fundamentals matter more than the algorithm choice."
+    },
+    "dna": {
+      "complexity": 78,
+      "innovation": 72,
+      "engineering": 85,
+      "aiUsage": 35,
+      "research": 80
+    },
+    "buildAnalytics": {
+      "manualWork": 65,
+      "aiAssistance": 35,
+      "breakdown": "AI used for boilerplate data processing code and literature review summarization. Core algorithm design, GIS methodology, and validation are manual."
+    },
+    "skills": ["GIS", "Remote Sensing", "Python", "Machine Learning"],
+    "createdAt": "2024-09-01",
+    "updatedAt": "2025-01-15"
+  },
+  {
+    "id": "proj-002",
+    "slug": "structural-load-optimizer",
+    "title": "Structural Load Optimizer",
+    "subtitle": "Python-based beam and slab load distribution tool",
+    "description": "A command-line and web tool that takes structural geometry as input and computes load paths, bending moments, and shear force diagrams for simple beam and slab configurations. Designed as a learning tool for structural analysis.",
+    "category": "Structural Engineering",
+    "tags": ["Manual", "Academic"],
+    "status": "completed",
+    "currentStage": "deployment",
+    "isPublic": true,
+    "isPending": false,
+    "featured": false,
+    "githubUrl": "https://github.com/archemasachika7",
+    "liveUrl": null,
+    "thumbnail": null,
+    "tech": ["Python", "NumPy", "Matplotlib", "Streamlit"],
+    "evolution": [
+      {
+        "stage": "idea",
+        "title": "Course Assignment Origin",
+        "description": "Started as a structural analysis assignment. Decided to build a reusable tool instead of solving it once on paper.",
+        "date": "2024-11",
+        "completed": true
+      },
+      {
+        "stage": "planning",
+        "title": "Scope Definition",
+        "description": "Limited to simply supported beams and one-way slabs. Defined input format and output visualizations.",
+        "date": "2024-11",
+        "completed": true
+      },
+      {
+        "stage": "development",
+        "title": "Core Engine",
+        "description": "Implemented stiffness matrix methods and Matplotlib-based SFD/BMD plotting.",
+        "date": "2024-12",
+        "completed": true
+      },
+      {
+        "stage": "deployment",
+        "title": "Streamlit Web App",
+        "description": "Wrapped in Streamlit for interactive use by classmates and faculty.",
+        "date": "2025-01",
+        "completed": true
+      },
+      {
+        "stage": "future",
+        "title": "2D Frame Analysis",
+        "description": "Extend to full 2D frame analysis with multiple load cases and IS 456 code checks.",
+        "date": null,
+        "completed": false
+      }
+    ],
+    "journal": {
+      "id": "journal-002",
+      "projectId": "proj-002",
+      "date": "2025-01-20",
+      "problemsFaced": [
+        "Numerical instability in stiffness matrix inversion for near-zero element lengths",
+        "Streamlit session state management was confusing initially"
+      ],
+      "failedAttempts": [
+        "First tried using symbolic math (SymPy) — too slow for real-time updates"
+      ],
+      "lessonsLearned": [
+        "Numerical methods need careful handling of boundary conditions",
+        "Streamlit is powerful for quick engineering dashboards but has real limitations for complex state"
+      ],
+      "futureWork": [
+        "Add continuous beam support",
+        "Export results to PDF report"
+      ],
+      "notes": "First project where I felt the connection between theory and code. The moment diagrams matching textbook answers felt genuinely satisfying."
+    },
+    "dna": {
+      "complexity": 55,
+      "innovation": 40,
+      "engineering": 90,
+      "aiUsage": 5,
+      "research": 30
+    },
+    "buildAnalytics": {
+      "manualWork": 95,
+      "aiAssistance": 5,
+      "breakdown": "Almost entirely manual. AI only used to generate docstrings."
+    },
+    "skills": ["Structural Engineering", "Python", "Numerical Methods"],
+    "createdAt": "2024-11-01",
+    "updatedAt": "2025-01-20"
+  },
+  {
+    "id": "proj-003",
+    "slug": "archios-platform",
+    "title": "ArchiOS",
+    "subtitle": "Digital Engineering Operating System",
+    "description": "This platform itself — a full-stack Next.js application that serves as my digital headquarters. Documents projects, engineering journals, knowledge graphs, and manages a dual civil + data science identity.",
+    "category": "Web Development",
+    "tags": ["Manual + AI", "Personal Experiments"],
+    "status": "active",
+    "currentStage": "development",
+    "isPublic": true,
+    "isPending": false,
+    "featured": true,
+    "githubUrl": "https://github.com/archemasachika7/archishmand7",
+    "liveUrl": null,
+    "thumbnail": null,
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "D3.js"],
+    "evolution": [
+      {
+        "stage": "idea",
+        "title": "Frustration with conventional portfolios",
+        "description": "Every portfolio looked the same. Wanted something that shows how I think, not just what I finished.",
+        "date": "2025-04",
+        "completed": true
+      },
+      {
+        "stage": "planning",
+        "title": "OS Concept & Architecture",
+        "description": "Designed the Digital Engineering OS concept. Mapped all features: dual identity, project DNA, knowledge graph, engineering journal, AI lab.",
+        "date": "2025-05",
+        "completed": true
+      },
+      {
+        "stage": "development",
+        "title": "Core Platform Build",
+        "description": "Building the full Next.js application with all modules.",
+        "date": "2025-05",
+        "completed": false
+      },
+      {
+        "stage": "deployment",
+        "title": "Vercel Deployment + Domain",
+        "description": "Deploy to Vercel, connect custom domain, configure GitHub integration webhook.",
+        "date": null,
+        "completed": false
+      },
+      {
+        "stage": "future",
+        "title": "AI Avatar + Voice Assistant",
+        "description": "Add conversational AI layer that can answer questions about my projects and background.",
+        "date": null,
+        "completed": false
+      }
+    ],
+    "journal": {
+      "id": "journal-003",
+      "projectId": "proj-003",
+      "date": "2025-05-30",
+      "problemsFaced": [
+        "Balancing civil engineering and data science identities in a single coherent UI",
+        "Knowledge graph performance with many nodes — D3 force simulation gets expensive"
+      ],
+      "failedAttempts": [
+        "First draft was just a dark-themed conventional portfolio — scrapped it entirely",
+        "Tried Three.js for knowledge graph — too heavy for the use case"
+      ],
+      "lessonsLearned": [
+        "Design philosophy matters as much as technical implementation",
+        "D3 force simulation needs careful parameter tuning for stable, readable graphs"
+      ],
+      "futureWork": [
+        "Real-time GitHub webhook integration",
+        "AI recommendation engine for project connections",
+        "Mobile companion app"
+      ],
+      "notes": "Building the tool you use is the most honest form of dogfooding."
+    },
+    "dna": {
+      "complexity": 82,
+      "innovation": 95,
+      "engineering": 70,
+      "aiUsage": 60,
+      "research": 50
+    },
+    "buildAnalytics": {
+      "manualWork": 40,
+      "aiAssistance": 60,
+      "breakdown": "AI assisted heavily with component scaffolding and styling. Architecture design, feature conception, and data modeling are entirely manual."
+    },
+    "skills": ["Web Development", "AI", "Data Science"],
+    "createdAt": "2025-05-01",
+    "updatedAt": "2025-05-30"
+  }
+]

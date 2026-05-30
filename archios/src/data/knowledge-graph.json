@@ -1,0 +1,39 @@
+{
+  "nodes": [
+    { "id": "civil", "label": "Civil Engineering", "group": "civil", "description": "Core discipline — B.E. at Jadavpur University", "relatedProjects": [] },
+    { "id": "surveying", "label": "Surveying", "group": "civil", "description": "Total station, GPS, levelling, cadastral surveys", "relatedProjects": [] },
+    { "id": "gis", "label": "GIS", "group": "bridge", "description": "Spatial data analysis, QGIS, ArcGIS", "relatedProjects": ["proj-001"] },
+    { "id": "remote-sensing", "label": "Remote Sensing", "group": "bridge", "description": "Satellite imagery, spectral analysis, Google Earth Engine", "relatedProjects": ["proj-001"] },
+    { "id": "structural", "label": "Structural Engineering", "group": "civil", "description": "Load analysis, IS codes, material behaviour", "relatedProjects": ["proj-002"] },
+    { "id": "hydrology", "label": "Hydrology", "group": "civil", "description": "Flood modelling, watershed analysis, runoff estimation", "relatedProjects": ["proj-001"] },
+    { "id": "python", "label": "Python", "group": "bridge", "description": "Primary programming language across domains", "relatedProjects": ["proj-001", "proj-002"] },
+    { "id": "data-science", "label": "Data Science", "group": "ds", "description": "Core discipline — BS at IIT Madras", "relatedProjects": [] },
+    { "id": "ml", "label": "Machine Learning", "group": "ds", "description": "scikit-learn, model selection, feature engineering", "relatedProjects": ["proj-001"] },
+    { "id": "ai", "label": "AI", "group": "ds", "description": "LLMs, prompt engineering, AI-assisted engineering", "relatedProjects": ["proj-003"] },
+    { "id": "statistics", "label": "Statistics", "group": "ds", "description": "Probability, regression, hypothesis testing", "relatedProjects": [] },
+    { "id": "web-dev", "label": "Web Development", "group": "ds", "description": "Next.js, TypeScript, full-stack applications", "relatedProjects": ["proj-003"] },
+    { "id": "geospatial-ml", "label": "Geospatial ML", "group": "bridge", "description": "Intersection of GIS, remote sensing, and machine learning", "relatedProjects": ["proj-001"] },
+    { "id": "numerical-methods", "label": "Numerical Methods", "group": "bridge", "description": "Stiffness matrix, FEM basics, computational science", "relatedProjects": ["proj-002"] }
+  ],
+  "edges": [
+    { "source": "civil", "target": "surveying", "strength": 0.9 },
+    { "source": "civil", "target": "structural", "strength": 0.9 },
+    { "source": "civil", "target": "hydrology", "strength": 0.8 },
+    { "source": "surveying", "target": "gis", "strength": 0.85 },
+    { "source": "gis", "target": "remote-sensing", "strength": 0.9 },
+    { "source": "remote-sensing", "target": "geospatial-ml", "strength": 0.85 },
+    { "source": "gis", "target": "geospatial-ml", "strength": 0.85 },
+    { "source": "geospatial-ml", "target": "ml", "strength": 0.9 },
+    { "source": "geospatial-ml", "target": "python", "strength": 0.8 },
+    { "source": "hydrology", "target": "remote-sensing", "strength": 0.7 },
+    { "source": "structural", "target": "numerical-methods", "strength": 0.85 },
+    { "source": "numerical-methods", "target": "python", "strength": 0.8 },
+    { "source": "python", "target": "data-science", "strength": 0.85 },
+    { "source": "python", "target": "ml", "strength": 0.85 },
+    { "source": "ml", "target": "data-science", "strength": 0.9 },
+    { "source": "ml", "target": "ai", "strength": 0.85 },
+    { "source": "data-science", "target": "statistics", "strength": 0.9 },
+    { "source": "data-science", "target": "web-dev", "strength": 0.5 },
+    { "source": "ai", "target": "web-dev", "strength": 0.6 }
+  ]
+}
