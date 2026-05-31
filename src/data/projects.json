@@ -1,5 +1,193 @@
 [
   {
+    "id": "proj-sla",
+    "slug": "serviceability-life-assessment",
+    "title": "Serviceability Life Assessment",
+    "subtitle": "ML-driven structural degradation prediction across Tokyo, LA, Kolkata & Guwahati",
+    "description": "A cross-city machine learning pipeline that models how environmental exposure — humidity, seismic activity, monsoon cycles, freeze-thaw stress — accelerates structural degradation in reinforced concrete. Trained on condition survey data from four cities with distinct climate profiles to build a globally-transferable serviceability life prediction model.",
+    "category": "Structural Engineering",
+    "tags": ["Intersectional", "Research Based", "ML + Civil"],
+    "status": "active",
+    "currentStage": "development",
+    "isPublic": true,
+    "isPending": false,
+    "featured": true,
+    "githubUrl": "https://github.com/archemasachika7",
+    "liveUrl": null,
+    "thumbnail": null,
+    "tech": ["Python", "TensorFlow", "scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+    "evolution": [
+      {
+        "stage": "idea",
+        "title": "Research Genesis",
+        "description": "Identified a gap: serviceability life models are mostly city-specific. Wanted a model that transfers across climates.",
+        "date": "2024-11",
+        "completed": true
+      },
+      {
+        "stage": "planning",
+        "title": "Dataset Architecture",
+        "description": "Curated degradation survey data from Tokyo (seismic), LA (dry heat/seismic), Kolkata (tropical monsoon), Guwahati (flood-prone). Defined 24 environmental exposure features.",
+        "date": "2025-01",
+        "completed": true
+      },
+      {
+        "stage": "development",
+        "title": "Multi-Climate ML Model",
+        "description": "Building a gradient-boosted regressor + LSTM hybrid for time-series degradation curves. City as a categorical feature with climate embeddings.",
+        "date": "2025-04",
+        "completed": false
+      },
+      {
+        "stage": "deployment",
+        "title": "Dashboard & API",
+        "description": "Interactive web dashboard for engineers to input structural parameters and receive serviceability life predictions with confidence intervals.",
+        "date": null,
+        "completed": false
+      },
+      {
+        "stage": "future",
+        "title": "IS Code Integration",
+        "description": "Map outputs to IS 456:2000 serviceability limit states and generate automated maintenance schedule recommendations.",
+        "date": null,
+        "completed": false
+      }
+    ],
+    "journal": {
+      "id": "journal-sla",
+      "projectId": "proj-sla",
+      "date": "2025-05-01",
+      "problemsFaced": [
+        "Survey data from different cities uses inconsistent rating scales — harmonisation required",
+        "Tokyo and LA data is abundant; Kolkata and Guwahati data is sparse",
+        "Seismic exposure is a binary event but its effect on degradation is continuous and lagged"
+      ],
+      "failedAttempts": [
+        "First attempt: train a single global model on raw features — terrible out-of-city generalisation",
+        "Tried one-hot encoding city — model memorised city averages instead of learning patterns"
+      ],
+      "lessonsLearned": [
+        "Climate embedding via K-means on weather features generalises much better than city labels",
+        "Degradation is non-linear — tree ensembles outperform linear regression by 38% MAE",
+        "Data from 10 buildings in one climate is worth more than 100 buildings in same climate"
+      ],
+      "futureWork": [
+        "Add satellite-based carbonation depth estimates as a passive monitoring input",
+        "Explore transfer learning from Japanese structural health datasets"
+      ],
+      "notes": "This project exists at the exact intersection of what I study. Civil engineering provides the domain knowledge to make the ML meaningful."
+    },
+    "dna": {
+      "complexity": 88,
+      "innovation": 92,
+      "engineering": 90,
+      "aiUsage": 55,
+      "research": 95
+    },
+    "buildAnalytics": {
+      "manualWork": 45,
+      "aiAssistance": 55,
+      "breakdown": "AI assists with model architecture experiments and data pipeline boilerplate. Domain expertise — knowing what features matter structurally — is entirely manual."
+    },
+    "skills": ["Structural Engineering", "Machine Learning", "Data Science", "Python"],
+    "createdAt": "2024-11-01",
+    "updatedAt": "2025-05-01"
+  },
+  {
+    "id": "proj-quizify",
+    "slug": "quizify",
+    "title": "Quizify",
+    "subtitle": "LLM-powered PDF-to-quiz engine using Gemma 4",
+    "description": "An agentic application that ingests complex exam PDFs — technical manuals, academic syllabi, IS codes — parses them using Gemma 4 via the Gemma API, and generates contextually accurate multiple-choice and short-answer quizzes. Designed to handle domain-specific language in engineering and data science curricula.",
+    "category": "AI",
+    "tags": ["AI", "LLM", "Personal Experiments"],
+    "status": "active",
+    "currentStage": "development",
+    "isPublic": true,
+    "isPending": false,
+    "featured": true,
+    "githubUrl": "https://github.com/archemasachika7",
+    "liveUrl": null,
+    "thumbnail": null,
+    "tech": ["Next.js", "TypeScript", "Gemma 4", "Python", "FastAPI", "Tailwind CSS"],
+    "evolution": [
+      {
+        "stage": "idea",
+        "title": "Exam Prep Problem",
+        "description": "Tired of manually creating practice questions from IS codes and IIT Madras study material. Decided to automate it.",
+        "date": "2025-02",
+        "completed": true
+      },
+      {
+        "stage": "planning",
+        "title": "LLM Selection & Prompting Strategy",
+        "description": "Evaluated Gemma 4, Claude Haiku, and GPT-4o-mini for technical domain accuracy. Gemma 4 won on domain-specific terminology retention.",
+        "date": "2025-03",
+        "completed": true
+      },
+      {
+        "stage": "development",
+        "title": "PDF Parser + Quiz Generator",
+        "description": "Building the structured output pipeline: PDF chunking → Gemma 4 question generation → difficulty classification → Next.js interactive UI.",
+        "date": "2025-04",
+        "completed": false
+      },
+      {
+        "stage": "deployment",
+        "title": "Self-hosted + Public Beta",
+        "description": "Deploy as a Vercel + FastAPI stack. Open to classmates at JU and IIT Madras.",
+        "date": null,
+        "completed": false
+      },
+      {
+        "stage": "future",
+        "title": "Spaced Repetition Engine",
+        "description": "Add an SM-2 spaced repetition scheduler to turn Quizify into a full active recall study system.",
+        "date": null,
+        "completed": false
+      }
+    ],
+    "journal": {
+      "id": "journal-quizify",
+      "projectId": "proj-quizify",
+      "date": "2025-04-20",
+      "problemsFaced": [
+        "PDF parsing of multi-column academic papers loses structural context",
+        "Gemma 4 occasionally hallucinates answer choices that sound plausible but are subtly wrong",
+        "IS code PDFs contain tables and diagrams that raw text extraction misses"
+      ],
+      "failedAttempts": [
+        "PyPDF2 for parsing — completely mangled column layouts in technical papers",
+        "Direct prompt: 'generate 10 questions from this text' — quality was poor on first attempt"
+      ],
+      "lessonsLearned": [
+        "pdfplumber + custom table extraction handles IS code layouts far better",
+        "Chain-of-thought prompting with explicit difficulty scaffolding massively improves question quality",
+        "Structured output with JSON schema prevents Gemma from drifting off-format"
+      ],
+      "futureWork": [
+        "Add image understanding for diagram-based questions",
+        "Multi-user sessions with shareable quiz links"
+      ],
+      "notes": "Building tools you actually use teaches you what matters. This is already saving me study time."
+    },
+    "dna": {
+      "complexity": 72,
+      "innovation": 85,
+      "engineering": 65,
+      "aiUsage": 80,
+      "research": 45
+    },
+    "buildAnalytics": {
+      "manualWork": 20,
+      "aiAssistance": 80,
+      "breakdown": "Heavy AI assistance for the LLM integration patterns and Next.js boilerplate. Prompt engineering, domain-specific evaluation, and the study pedagogy design are entirely manual."
+    },
+    "skills": ["AI", "Web Development", "Python", "LLMs"],
+    "createdAt": "2025-02-01",
+    "updatedAt": "2025-04-20"
+  },
+  {
     "id": "proj-001",
     "slug": "gis-flood-mapping",
     "title": "GIS-Based Flood Risk Mapping",
@@ -11,96 +199,37 @@
     "currentStage": "development",
     "isPublic": true,
     "isPending": false,
-    "featured": true,
+    "featured": false,
     "githubUrl": "https://github.com/archemasachika7",
     "liveUrl": null,
     "thumbnail": null,
     "tech": ["Python", "QGIS", "Google Earth Engine", "scikit-learn", "GeoPandas"],
     "evolution": [
-      {
-        "stage": "idea",
-        "title": "Initial Concept",
-        "description": "Identified the need for automated flood risk assessment after studying manual surveying limitations.",
-        "date": "2024-09",
-        "completed": true
-      },
-      {
-        "stage": "planning",
-        "title": "Research & Planning",
-        "description": "Reviewed literature on remote sensing-based flood mapping. Defined dataset requirements and processing pipeline architecture.",
-        "date": "2024-10",
-        "completed": true
-      },
-      {
-        "stage": "development",
-        "title": "Pipeline Development",
-        "description": "Building the satellite data ingestion, DEM processing, and ML classification modules. Currently integrating Google Earth Engine API.",
-        "date": "2025-01",
-        "completed": false
-      },
-      {
-        "stage": "deployment",
-        "title": "QGIS Plugin & Web Dashboard",
-        "description": "Package as a QGIS plugin and build a lightweight web dashboard for non-GIS users.",
-        "date": null,
-        "completed": false
-      },
-      {
-        "stage": "future",
-        "title": "Real-time SAR Integration",
-        "description": "Integrate Sentinel-1 SAR data for near-real-time flood detection during active events.",
-        "date": null,
-        "completed": false
-      }
+      { "stage": "idea",        "title": "Initial Concept",       "description": "Identified the need for automated flood risk assessment after studying manual surveying limitations.", "date": "2024-09", "completed": true  },
+      { "stage": "planning",    "title": "Research & Planning",    "description": "Reviewed literature on remote sensing-based flood mapping. Defined dataset requirements and processing pipeline.", "date": "2024-10", "completed": true  },
+      { "stage": "development", "title": "Pipeline Development",   "description": "Building the satellite data ingestion, DEM processing, and ML classification modules.", "date": "2025-01", "completed": false },
+      { "stage": "deployment",  "title": "QGIS Plugin",            "description": "Package as a QGIS plugin and build a lightweight web dashboard.", "date": null, "completed": false },
+      { "stage": "future",      "title": "Real-time SAR",          "description": "Integrate Sentinel-1 SAR data for near-real-time flood detection.", "date": null, "completed": false }
     ],
     "journal": {
-      "id": "journal-001",
-      "projectId": "proj-001",
-      "date": "2025-01-15",
-      "problemsFaced": [
-        "Google Earth Engine API rate limits causing processing delays",
-        "Inconsistent DEM resolution across study area",
-        "Cloud cover in optical imagery — 60% of Sentinel-2 images unusable"
-      ],
-      "failedAttempts": [
-        "Tried using Landsat 8 initially — spatial resolution too coarse for urban flood mapping",
-        "First ML model (Random Forest) overfit on training tiles with zero flood events",
-        "SRTM DEM had artefacts over water bodies that corrupted terrain analysis"
-      ],
-      "lessonsLearned": [
-        "SAR data is far superior to optical for active flood mapping — it penetrates clouds",
-        "Stratified sampling for train/test split is essential when classes are heavily imbalanced",
-        "Always validate DEM data quality before running terrain derivatives"
-      ],
-      "futureWork": [
-        "Expand to river basin scale with hydrological routing",
-        "Add uncertainty quantification to ML predictions",
-        "Explore transfer learning from flood events in other geographies"
-      ],
+      "id": "journal-001", "projectId": "proj-001", "date": "2025-01-15",
+      "problemsFaced": ["Google Earth Engine API rate limits", "Inconsistent DEM resolution", "60% of Sentinel-2 images unusable due to cloud cover"],
+      "failedAttempts": ["Landsat 8 — too coarse for urban flood mapping", "First Random Forest overfit on zero-flood tiles"],
+      "lessonsLearned": ["SAR data penetrates clouds — far superior for active flood mapping", "Stratified sampling essential for imbalanced classes"],
+      "futureWork": ["Expand to river basin scale", "Add uncertainty quantification"],
       "notes": "This project is teaching me more about data quality than about ML. The engineering fundamentals matter more than the algorithm choice."
     },
-    "dna": {
-      "complexity": 78,
-      "innovation": 72,
-      "engineering": 85,
-      "aiUsage": 35,
-      "research": 80
-    },
-    "buildAnalytics": {
-      "manualWork": 65,
-      "aiAssistance": 35,
-      "breakdown": "AI used for boilerplate data processing code and literature review summarization. Core algorithm design, GIS methodology, and validation are manual."
-    },
+    "dna": { "complexity": 78, "innovation": 72, "engineering": 85, "aiUsage": 35, "research": 80 },
+    "buildAnalytics": { "manualWork": 65, "aiAssistance": 35, "breakdown": "Core algorithm design, GIS methodology, and validation are manual." },
     "skills": ["GIS", "Remote Sensing", "Python", "Machine Learning"],
-    "createdAt": "2024-09-01",
-    "updatedAt": "2025-01-15"
+    "createdAt": "2024-09-01", "updatedAt": "2025-01-15"
   },
   {
     "id": "proj-002",
     "slug": "structural-load-optimizer",
     "title": "Structural Load Optimizer",
     "subtitle": "Python-based beam and slab load distribution tool",
-    "description": "A command-line and web tool that takes structural geometry as input and computes load paths, bending moments, and shear force diagrams for simple beam and slab configurations. Designed as a learning tool for structural analysis.",
+    "description": "A command-line and Streamlit web tool that computes load paths, bending moments, and shear force diagrams for simple beam and slab configurations using stiffness matrix methods.",
     "category": "Structural Engineering",
     "tags": ["Manual", "Academic"],
     "status": "completed",
@@ -113,170 +242,60 @@
     "thumbnail": null,
     "tech": ["Python", "NumPy", "Matplotlib", "Streamlit"],
     "evolution": [
-      {
-        "stage": "idea",
-        "title": "Course Assignment Origin",
-        "description": "Started as a structural analysis assignment. Decided to build a reusable tool instead of solving it once on paper.",
-        "date": "2024-11",
-        "completed": true
-      },
-      {
-        "stage": "planning",
-        "title": "Scope Definition",
-        "description": "Limited to simply supported beams and one-way slabs. Defined input format and output visualizations.",
-        "date": "2024-11",
-        "completed": true
-      },
-      {
-        "stage": "development",
-        "title": "Core Engine",
-        "description": "Implemented stiffness matrix methods and Matplotlib-based SFD/BMD plotting.",
-        "date": "2024-12",
-        "completed": true
-      },
-      {
-        "stage": "deployment",
-        "title": "Streamlit Web App",
-        "description": "Wrapped in Streamlit for interactive use by classmates and faculty.",
-        "date": "2025-01",
-        "completed": true
-      },
-      {
-        "stage": "future",
-        "title": "2D Frame Analysis",
-        "description": "Extend to full 2D frame analysis with multiple load cases and IS 456 code checks.",
-        "date": null,
-        "completed": false
-      }
+      { "stage": "idea",        "title": "Course Assignment Origin", "description": "Started as a structural analysis assignment. Decided to build a reusable tool.", "date": "2024-11", "completed": true },
+      { "stage": "planning",    "title": "Scope Definition",          "description": "Limited to simply supported beams and one-way slabs.", "date": "2024-11", "completed": true },
+      { "stage": "development", "title": "Core Engine",               "description": "Implemented stiffness matrix methods and Matplotlib-based SFD/BMD plotting.", "date": "2024-12", "completed": true },
+      { "stage": "deployment",  "title": "Streamlit Web App",         "description": "Wrapped in Streamlit for interactive use.", "date": "2025-01", "completed": true },
+      { "stage": "future",      "title": "2D Frame Analysis",         "description": "Extend to full 2D frame analysis with IS 456 code checks.", "date": null, "completed": false }
     ],
     "journal": {
-      "id": "journal-002",
-      "projectId": "proj-002",
-      "date": "2025-01-20",
-      "problemsFaced": [
-        "Numerical instability in stiffness matrix inversion for near-zero element lengths",
-        "Streamlit session state management was confusing initially"
-      ],
-      "failedAttempts": [
-        "First tried using symbolic math (SymPy) — too slow for real-time updates"
-      ],
-      "lessonsLearned": [
-        "Numerical methods need careful handling of boundary conditions",
-        "Streamlit is powerful for quick engineering dashboards but has real limitations for complex state"
-      ],
-      "futureWork": [
-        "Add continuous beam support",
-        "Export results to PDF report"
-      ],
+      "id": "journal-002", "projectId": "proj-002", "date": "2025-01-20",
+      "problemsFaced": ["Numerical instability in stiffness matrix for near-zero element lengths", "Streamlit session state complexity"],
+      "failedAttempts": ["SymPy for symbolic math — too slow for real-time updates"],
+      "lessonsLearned": ["Numerical methods need careful boundary condition handling", "Streamlit has real limitations for complex state"],
+      "futureWork": ["Add continuous beam support", "Export to PDF report"],
       "notes": "First project where I felt the connection between theory and code. The moment diagrams matching textbook answers felt genuinely satisfying."
     },
-    "dna": {
-      "complexity": 55,
-      "innovation": 40,
-      "engineering": 90,
-      "aiUsage": 5,
-      "research": 30
-    },
-    "buildAnalytics": {
-      "manualWork": 95,
-      "aiAssistance": 5,
-      "breakdown": "Almost entirely manual. AI only used to generate docstrings."
-    },
+    "dna": { "complexity": 55, "innovation": 40, "engineering": 90, "aiUsage": 5, "research": 30 },
+    "buildAnalytics": { "manualWork": 95, "aiAssistance": 5, "breakdown": "Almost entirely manual. AI only used to generate docstrings." },
     "skills": ["Structural Engineering", "Python", "Numerical Methods"],
-    "createdAt": "2024-11-01",
-    "updatedAt": "2025-01-20"
+    "createdAt": "2024-11-01", "updatedAt": "2025-01-20"
   },
   {
     "id": "proj-003",
     "slug": "archios-platform",
     "title": "ArchiOS",
     "subtitle": "Digital Engineering Operating System",
-    "description": "This platform itself — a full-stack Next.js application that serves as my digital headquarters. Documents projects, engineering journals, knowledge graphs, and manages a dual civil + data science identity.",
+    "description": "This platform — a full-stack Next.js application serving as my digital headquarters, documenting dual civil + data science identity, projects, knowledge graphs, and engineering journals.",
     "category": "Web Development",
     "tags": ["Manual + AI", "Personal Experiments"],
     "status": "active",
     "currentStage": "development",
     "isPublic": true,
     "isPending": false,
-    "featured": true,
+    "featured": false,
     "githubUrl": "https://github.com/archemasachika7/archishmand7",
     "liveUrl": null,
     "thumbnail": null,
-    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "D3.js"],
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "D3.js", "Zustand"],
     "evolution": [
-      {
-        "stage": "idea",
-        "title": "Frustration with conventional portfolios",
-        "description": "Every portfolio looked the same. Wanted something that shows how I think, not just what I finished.",
-        "date": "2025-04",
-        "completed": true
-      },
-      {
-        "stage": "planning",
-        "title": "OS Concept & Architecture",
-        "description": "Designed the Digital Engineering OS concept. Mapped all features: dual identity, project DNA, knowledge graph, engineering journal, AI lab.",
-        "date": "2025-05",
-        "completed": true
-      },
-      {
-        "stage": "development",
-        "title": "Core Platform Build",
-        "description": "Building the full Next.js application with all modules.",
-        "date": "2025-05",
-        "completed": false
-      },
-      {
-        "stage": "deployment",
-        "title": "Vercel Deployment + Domain",
-        "description": "Deploy to Vercel, connect custom domain, configure GitHub integration webhook.",
-        "date": null,
-        "completed": false
-      },
-      {
-        "stage": "future",
-        "title": "AI Avatar + Voice Assistant",
-        "description": "Add conversational AI layer that can answer questions about my projects and background.",
-        "date": null,
-        "completed": false
-      }
+      { "stage": "idea",        "title": "Frustration with conventional portfolios", "description": "Every portfolio looked the same. Wanted something that shows how I think.", "date": "2025-04", "completed": true },
+      { "stage": "planning",    "title": "OS Concept & Architecture",                 "description": "Designed the Digital Engineering OS concept. Dual identity, project DNA, knowledge graph.", "date": "2025-05", "completed": true },
+      { "stage": "development", "title": "Core Platform Build",                       "description": "Building the full Next.js application with all modules.", "date": "2025-05", "completed": false },
+      { "stage": "deployment",  "title": "Vercel + Domain",                           "description": "Deploy to Vercel, connect custom domain, configure GitHub integration.", "date": null, "completed": false },
+      { "stage": "future",      "title": "AI Avatar + Voice",                         "description": "Add conversational AI layer powered by Claude.", "date": null, "completed": false }
     ],
     "journal": {
-      "id": "journal-003",
-      "projectId": "proj-003",
-      "date": "2025-05-30",
-      "problemsFaced": [
-        "Balancing civil engineering and data science identities in a single coherent UI",
-        "Knowledge graph performance with many nodes — D3 force simulation gets expensive"
-      ],
-      "failedAttempts": [
-        "First draft was just a dark-themed conventional portfolio — scrapped it entirely",
-        "Tried Three.js for knowledge graph — too heavy for the use case"
-      ],
-      "lessonsLearned": [
-        "Design philosophy matters as much as technical implementation",
-        "D3 force simulation needs careful parameter tuning for stable, readable graphs"
-      ],
-      "futureWork": [
-        "Real-time GitHub webhook integration",
-        "AI recommendation engine for project connections",
-        "Mobile companion app"
-      ],
+      "id": "journal-003", "projectId": "proj-003", "date": "2025-05-30",
+      "problemsFaced": ["Balancing civil and data science identities in one coherent UI", "Knowledge graph performance with many nodes"],
+      "failedAttempts": ["First draft was a conventional dark portfolio — scrapped it", "Three.js for knowledge graph — too heavy"],
+      "lessonsLearned": ["Design philosophy matters as much as technical implementation", "D3 force simulation needs careful parameter tuning"],
+      "futureWork": ["Real-time GitHub webhook integration", "Mobile companion app"],
       "notes": "Building the tool you use is the most honest form of dogfooding."
     },
-    "dna": {
-      "complexity": 82,
-      "innovation": 95,
-      "engineering": 70,
-      "aiUsage": 60,
-      "research": 50
-    },
-    "buildAnalytics": {
-      "manualWork": 40,
-      "aiAssistance": 60,
-      "breakdown": "AI assisted heavily with component scaffolding and styling. Architecture design, feature conception, and data modeling are entirely manual."
-    },
+    "dna": { "complexity": 82, "innovation": 95, "engineering": 70, "aiUsage": 60, "research": 50 },
+    "buildAnalytics": { "manualWork": 40, "aiAssistance": 60, "breakdown": "Architecture design, feature conception, and data modeling are entirely manual." },
     "skills": ["Web Development", "AI", "Data Science"],
-    "createdAt": "2025-05-01",
-    "updatedAt": "2025-05-30"
+    "createdAt": "2025-05-01", "updatedAt": "2025-05-30"
   }
 ]

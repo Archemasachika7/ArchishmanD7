@@ -1,336 +1,254 @@
 "use client";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { Project } from "@/lib/types";
-import { ExternalLink, GitFork, ArrowRight } from "lucide-react";
 
-/* ─── Colour maps ──────────────────────────────────────────────────── */
-
-const stageColors: Record<string, string> = {
-  idea:        "#ff6b35",
-  planning:    "#9b59ff",
-  development: "#00d4ff",
-  deployment:  "#4466ff",
-  future:      "#00ff88",
+const CATEGORY_COLORS: Record<string, string> = {
+  "Civil Engineering":      "#fb923c",
+  "Surveying":              "#f97316",
+  "GIS & Remote Sensing":   "#38bdf8",
+  "Structural Engineering": "#818cf8",
+  "Data Science":           "#60a5fa",
+  "Machine Learning":       "#a78bfa",
+  "AI":                     "#34d399",
+  "Web Development":        "#f472b6",
+  "Research":               "#fbbf24",
+  "Personal Experiments":   "#94a3b8",
 };
 
-const categoryColors: Record<string, string> = {
-  "Civil Engineering":      "#ff6b35",
-  "Surveying":              "#ff9b35",
-  "GIS & Remote Sensing":   "#35c5ff",
-  "Structural Engineering": "#4466ff",
-  "Data Science":           "#00d4ff",
-  "Machine Learning":       "#9b59ff",
-  "AI":                     "#00ff88",
-  "Web Development":        "#ff6bab",
-  "Research":               "#ffd700",
-  "Personal Experiments":   "#8892a0",
+const STAGE_COLORS: Record<string, string> = {
+  idea: "#f97316", planning: "#a78bfa",
+  development: "#60a5fa", deployment: "#818cf8", future: "#34d399",
 };
-
-/* ─── Component ──────────────────────────────────────────────────────── */
 
 export function ProjectCard({ project }: { project: Project }) {
-  const stageColor = stageColors[project.currentStage]  || "#8892a0";
-  const catColor   = categoryColors[project.category]   || "#8892a0";
+  const catColor   = CATEGORY_COLORS[project.category] ?? "#94a3b8";
+  const stageColor = STAGE_COLORS[project.currentStage] ?? "#94a3b8";
   const aiPct      = project.buildAnalytics.aiAssistance;
+  const rgbCat     = hexToRgb(catColor);
 
   return (
-    <Link href={`/projects/${project.slug}`} className="block group">
-      <div
-        style={{
-          background: "var(--bg-panel)",
-          border: "1px solid var(--border-mid)",
-          borderLeft: `3px solid ${catColor}`,
-          borderRadius: "8px",
-          padding: "0",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          transition: "all 0.2s ease",
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      <Link href={`/projects/${project.slug}`} style={{ display: "block", textDecoration: "none" }}>
+        <div style={{
+          position: "relative", overflow: "hidden",
+          borderRadius: "16px",
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.09)",
+          backdropFilter: "blur(16px)",
+          boxShadow: "0 4px 32px rgba(0,0,0,0.35)",
+          transition: "border-color 0.25s, box-shadow 0.25s",
           cursor: "pointer",
-          position: "relative",
-          overflow: "hidden",
+          height: "100%",
         }}
-        onMouseEnter={(e) => {
-          const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor       = `${catColor}60`;
-          el.style.borderLeftColor   = catColor;
-          el.style.boxShadow         = `0 0 20px ${catColor}12, 0 4px 24px rgba(0,0,0,0.4)`;
-          el.style.transform         = "translateY(-1px)";
-        }}
-        onMouseLeave={(e) => {
-          const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor       = "var(--border-mid)";
-          el.style.borderLeftColor   = catColor;
-          el.style.boxShadow         = "none";
-          el.style.transform         = "translateY(0)";
-        }}
-      >
-        {/* ── OS Titlebar ── */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "8px 12px",
-            background: "var(--bg-secondary)",
-            borderBottom: "1px solid var(--border)",
+          onMouseEnter={(e) => {
+            const el = e.currentTarget as HTMLDivElement;
+            el.style.borderColor = `${catColor}30`;
+            el.style.boxShadow = `0 8px 40px rgba(${rgbCat},0.12), 0 2px 8px rgba(0,0,0,0.5)`;
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget as HTMLDivElement;
+            el.style.borderColor = "rgba(255,255,255,0.09)";
+            el.style.boxShadow = "0 4px 32px rgba(0,0,0,0.35)";
           }}
         >
-          <span
-            style={{
-              width: "8px",
-              height: "8px",
-              borderRadius: "50%",
-              flexShrink: 0,
-              background: catColor,
-              boxShadow: `0 0 6px ${catColor}80`,
-            }}
-          />
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.58rem",
-              color: "var(--text-muted)",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              flex: 1,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {project.category}
-          </span>
-          {/* Stage badge */}
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.56rem",
-              padding: "2px 7px",
-              borderRadius: "3px",
-              background: `${stageColor}12`,
-              color: stageColor,
-              border: `1px solid ${stageColor}30`,
-              letterSpacing: "0.05em",
-              flexShrink: 0,
-              boxShadow: `0 0 6px ${stageColor}15`,
-            }}
-          >
-            {project.currentStage}
-          </span>
-          {/* Status dot */}
-          <span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              flexShrink: 0,
-              background:
-                project.status === "active"    ? "#00ff88" :
-                project.status === "completed" ? "#4466ff" : "#2a3340",
-              boxShadow:
-                project.status === "active"    ? "0 0 6px #00ff88" :
-                project.status === "completed" ? "0 0 6px #4466ff" : "none",
-            }}
-          />
-        </div>
+          {/* Ambient glow */}
+          <div style={{
+            position: "absolute", top: -32, right: -32,
+            width: 120, height: 120, borderRadius: "50%",
+            background: `rgba(${rgbCat},0.09)`,
+            filter: "blur(40px)", pointerEvents: "none",
+          }} />
 
-        {/* ── Card Body ── */}
-        <div style={{ padding: "14px", flex: 1, display: "flex", flexDirection: "column", gap: "10px" }}>
+          {/* Category accent bar */}
+          <div style={{ height: 3, background: `linear-gradient(90deg, ${catColor}, transparent)` }} />
 
-          {/* Title */}
-          <h3
-            style={{
-              fontSize: "0.88rem",
-              fontWeight: 700,
-              color: "var(--text-primary)",
-              lineHeight: 1.3,
-              transition: "color 0.15s",
-            }}
-          >
-            {project.title}
-          </h3>
+          {/* Header */}
+          <div style={{
+            display: "flex", alignItems: "center", gap: "8px",
+            padding: "12px 16px 10px",
+            borderBottom: "1px solid rgba(255,255,255,0.05)",
+          }}>
+            <span style={{
+              width: 8, height: 8, borderRadius: "50%", flexShrink: 0,
+              background: catColor, boxShadow: `0 0 8px ${catColor}80`,
+            }} />
+            <span style={{
+              fontFamily: "var(--font-mono)", fontSize: "0.58rem",
+              color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em",
+              textTransform: "uppercase", flex: 1, overflow: "hidden",
+              textOverflow: "ellipsis", whiteSpace: "nowrap",
+            }}>{project.category}</span>
+            <span style={{
+              fontFamily: "var(--font-mono)", fontSize: "0.56rem",
+              padding: "2px 8px", borderRadius: "100px",
+              background: `${stageColor}14`, color: stageColor,
+              border: `1px solid ${stageColor}30`, flexShrink: 0,
+            }}>{project.currentStage}</span>
+            <span style={{
+              width: 6, height: 6, borderRadius: "50%", flexShrink: 0,
+              background: project.status === "active" ? "#34d399" : project.status === "completed" ? "#818cf8" : "#2a3340",
+              boxShadow: project.status === "active" ? "0 0 6px #34d399" : "none",
+            }} />
+          </div>
 
-          {/* Subtitle */}
-          <p
-            style={{
-              fontSize: "0.71rem",
-              color: "var(--text-secondary)",
-              lineHeight: 1.6,
+          {/* Body */}
+          <div style={{ padding: "16px 16px 12px", display: "flex", flexDirection: "column", gap: "10px" }}>
+            <h3 style={{
+              fontSize: "0.95rem", fontWeight: 700,
+              color: "#fff", lineHeight: 1.3,
+            }}>{project.title}</h3>
+
+            <p style={{
+              fontSize: "0.73rem", color: "rgba(255,255,255,0.45)",
+              lineHeight: 1.65,
               display: "-webkit-box",
               WebkitLineClamp: 2,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
-            }}
-          >
-            {project.subtitle}
-          </p>
+            }}>{project.subtitle}</p>
 
-          {/* Tech stack pills */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-            {project.tech.slice(0, 4).map((t) => (
-              <span key={t} className="tag-pill">{t}</span>
-            ))}
-            {project.tech.length > 4 && (
-              <span className="tag-pill">+{project.tech.length - 4}</span>
-            )}
-          </div>
+            {/* Tags */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+              {project.tech.slice(0, 4).map((t) => (
+                <span key={t} style={{
+                  padding: "3px 10px", borderRadius: "100px",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  fontSize: "0.65rem", color: "rgba(255,255,255,0.55)",
+                }}>{t}</span>
+              ))}
+              {project.tech.length > 4 && (
+                <span style={{
+                  padding: "3px 10px", borderRadius: "100px",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  fontSize: "0.65rem", color: "rgba(255,255,255,0.3)",
+                }}>+{project.tech.length - 4}</span>
+              )}
+            </div>
 
-          {/* AI / Manual meter */}
-          <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
+            {/* Build method bar */}
+            <div>
+              <div style={{
+                display: "flex", justifyContent: "space-between",
                 marginBottom: "5px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.58rem",
-                color: "var(--text-muted)",
-              }}
-            >
-              <span>BUILD METHOD</span>
-              <span style={{ color: aiPct > 50 ? "var(--accent-cyan)" : "var(--accent-green)" }}>
-                {aiPct > 50 ? `AI ${aiPct}%` : `Manual ${project.buildAnalytics.manualWork}%`}
-              </span>
+                fontFamily: "var(--font-mono)", fontSize: "0.58rem",
+                color: "rgba(255,255,255,0.3)",
+              }}>
+                <span>BUILD METHOD</span>
+                <span style={{ color: aiPct > 50 ? "#60a5fa" : "#34d399" }}>
+                  {aiPct > 50 ? `AI ${aiPct}%` : `Manual ${project.buildAnalytics.manualWork}%`}
+                </span>
+              </div>
+              <div style={{
+                height: 3, borderRadius: 2, overflow: "hidden",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  height: "100%", width: `${project.buildAnalytics.manualWork}%`,
+                  background: "linear-gradient(90deg, #34d399, #60a5fa)",
+                  borderRadius: 2,
+                  boxShadow: "0 0 8px rgba(52,211,153,0.4)",
+                }} />
+              </div>
             </div>
-            <div
-              style={{
-                height: "3px",
-                borderRadius: "2px",
-                overflow: "hidden",
-                background: "var(--bg-secondary)",
-                border: "1px solid var(--border)",
-              }}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  width: `${project.buildAnalytics.manualWork}%`,
-                  background: "linear-gradient(90deg, var(--accent-green), var(--accent-cyan))",
-                  borderRadius: "2px",
-                  transition: "width 0.5s ease-out",
-                  boxShadow: "0 0 6px rgba(0,255,136,0.4)",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "3px",
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.55rem",
-                color: "var(--text-muted)",
-              }}
-            >
-              <span>Manual {project.buildAnalytics.manualWork}%</span>
-              <span>AI {aiPct}%</span>
-            </div>
-          </div>
 
-          {/* DNA bar chart */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: "4px",
-            }}
-          >
-            {Object.entries(project.dna).map(([key, val]) => {
-              const pct = Number(val);
-              return (
+            {/* DNA micro chart */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "4px" }}>
+              {Object.entries(project.dna).map(([key, val]) => (
                 <div key={key} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "28px",
-                      display: "flex",
-                      alignItems: "flex-end",
-                      background: "rgba(255,255,255,0.02)",
-                      borderRadius: "3px 3px 0 0",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "100%",
-                        height: `${pct}%`,
-                        background: `rgba(0,255,136,${pct / 100 * 0.75 + 0.12})`,
-                        borderRadius: "2px 2px 0 0",
-                        transition: "height 0.7s ease-out",
-                        boxShadow: pct > 70 ? "0 -2px 6px rgba(0,255,136,0.3)" : "none",
-                      }}
-                    />
+                  <div style={{
+                    width: "100%", height: "24px",
+                    display: "flex", alignItems: "flex-end",
+                    background: "rgba(255,255,255,0.03)", borderRadius: "3px 3px 0 0",
+                    overflow: "hidden",
+                  }}>
+                    <div style={{
+                      width: "100%", height: `${Number(val)}%`,
+                      background: `rgba(${rgbCat},${Number(val) / 100 * 0.7 + 0.1})`,
+                      borderRadius: "2px 2px 0 0",
+                    }} />
                   </div>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.5rem",
-                      color: "var(--text-muted)",
-                      letterSpacing: "0.04em",
-                    }}
-                  >
+                  <span style={{
+                    fontFamily: "var(--font-mono)", fontSize: "0.48rem",
+                    color: "rgba(255,255,255,0.25)", letterSpacing: "0.04em",
+                  }}>
                     {key === "aiUsage" ? "AI" : key.slice(0, 3).toUpperCase()}
                   </span>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ── Card Footer ── */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "10px 14px",
-            borderTop: "1px solid var(--border)",
-            background: "rgba(0,0,0,0.15)",
-          }}
-        >
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            {project.githubUrl && (
-              <button
-                type="button"
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.githubUrl, "_blank", "noopener,noreferrer"); }}
-                style={{ color: "var(--text-muted)", transition: "color 0.15s", background: "none", border: "none", cursor: "pointer", padding: 0 }}
-                title="GitHub"
-              >
-                <GitFork size={13} />
-              </button>
-            )}
-            {project.liveUrl && (
-              <button
-                type="button"
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.liveUrl, "_blank", "noopener,noreferrer"); }}
-                style={{ color: "var(--text-muted)", transition: "color 0.15s", background: "none", border: "none", cursor: "pointer", padding: 0 }}
-                title="Live demo"
-              >
-                <ExternalLink size={13} />
-              </button>
-            )}
+              ))}
+            </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.62rem",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              color: catColor,
-              opacity: 0.75,
-              transition: "opacity 0.15s",
-            }}
-          >
-            OPEN
-            <ArrowRight size={11} />
+          {/* Footer */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "10px 16px", marginTop: "auto",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+          }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              {project.githubUrl && (
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.githubUrl, "_blank", "noopener,noreferrer"); }}
+                  style={{
+                    background: "none", border: "none", cursor: "pointer",
+                    padding: 0, color: "rgba(255,255,255,0.35)", transition: "color 0.15s",
+                  }}
+                  title="GitHub"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                  </svg>
+                </button>
+              )}
+              {project.liveUrl && (
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.liveUrl, "_blank", "noopener,noreferrer"); }}
+                  style={{
+                    background: "none", border: "none", cursor: "pointer",
+                    padding: 0, color: "rgba(255,255,255,0.35)", transition: "color 0.15s",
+                  }}
+                  title="Live demo"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </button>
+              )}
+            </div>
+            <div style={{
+              display: "flex", alignItems: "center", gap: "5px",
+              fontFamily: "var(--font-mono)", fontSize: "0.62rem",
+              fontWeight: 600, letterSpacing: "0.08em",
+              color: catColor, opacity: 0.8,
+            }}>
+              Case Study
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </motion.div>
   );
+}
+
+function hexToRgb(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `${r},${g},${b}`;
 }
