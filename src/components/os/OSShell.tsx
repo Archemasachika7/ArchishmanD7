@@ -41,6 +41,9 @@ export function OSShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const time = useTime();
 
+  // Rehydrate persisted identity from localStorage after hydration completes
+  useEffect(() => { useOSStore.persist.rehydrate(); }, []);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 

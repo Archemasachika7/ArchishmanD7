@@ -22,6 +22,6 @@ export const useOSStore = create<OSStore>()(
       sidebarOpen: false,
       setSidebarOpen: (v) => set({ sidebarOpen: v }),
     }),
-    { name: "archios-store", partialize: (s) => ({ identity: s.identity }) }
+    { name: "archios-store", partialize: (s) => ({ identity: s.identity }), skipHydration: true }
   )
 );
