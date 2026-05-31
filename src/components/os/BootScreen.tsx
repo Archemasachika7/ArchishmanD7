@@ -61,7 +61,8 @@ export function BootScreen() {
     let i = 0;
     const interval = setInterval(() => {
       if (i < bootLines.length) {
-        setLines((prev) => [...prev, bootLines[i]]);
+        const line = bootLines[i]; // capture value before i increments
+        setLines((prev) => [...prev, line]);
         setProgress(Math.round(((i + 1) / bootLines.length) * 100));
         i++;
       } else {

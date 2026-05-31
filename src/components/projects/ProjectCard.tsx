@@ -291,28 +291,24 @@ export function ProjectCard({ project }: { project: Project }) {
         >
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                style={{ color: "var(--text-muted)", transition: "color 0.15s" }}
+              <button
+                type="button"
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.githubUrl, "_blank", "noopener,noreferrer"); }}
+                style={{ color: "var(--text-muted)", transition: "color 0.15s", background: "none", border: "none", cursor: "pointer", padding: 0 }}
                 title="GitHub"
               >
                 <GitFork size={13} />
-              </a>
+              </button>
             )}
             {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                style={{ color: "var(--text-muted)", transition: "color 0.15s" }}
+              <button
+                type="button"
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.liveUrl, "_blank", "noopener,noreferrer"); }}
+                style={{ color: "var(--text-muted)", transition: "color 0.15s", background: "none", border: "none", cursor: "pointer", padding: 0 }}
                 title="Live demo"
               >
                 <ExternalLink size={13} />
-              </a>
+              </button>
             )}
           </div>
 
