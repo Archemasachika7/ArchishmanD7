@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #060608;
-  --bg-secondary: #0c0c12;
-  --bg-panel: #10101a;
-  --bg-panel-hover: #161622;
-  --border: rgba(0, 255, 136, 0.12);
-  --border-bright: rgba(0, 255, 136, 0.35);
+  --bg-primary: #050507;
+  --bg-secondary: #08080d;
+  --bg-panel: #0d0d14;
+  --bg-panel-hover: #12121c;
+  --border: rgba(0, 255, 136, 0.1);
+  --border-bright: rgba(0, 255, 136, 0.4);
+  --border-cyan: rgba(0, 212, 255, 0.3);
   --accent-green: #00ff88;
-  --accent-cyan: #00e5ff;
+  --accent-cyan: #00d4ff;
   --accent-blue: #4466ff;
   --accent-orange: #ff6b35;
   --accent-purple: #9b59ff;
-  --text-primary: #e8eaf0;
-  --text-secondary: #8892a0;
-  --text-muted: #4a5260;
+  --text-primary: #e2e8f0;
+  --text-secondary: #7a8899;
+  --text-muted: #3d4a57;
   --text-accent: #00ff88;
 }
 
@@ -41,38 +42,144 @@ body {
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width: 4px; height: 4px; }
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-::-webkit-scrollbar-thumb { background: rgba(0, 255, 136, 0.25); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0, 255, 136, 0.5); }
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 136, 0.2);
+  border-radius: 1px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 255, 136, 0.45); }
 
-::selection { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+::selection { background: rgba(0, 255, 136, 0.18); color: #00ff88; }
 
+/* ─── OS Window Chrome ─────────────────────────────────── */
+/* A panel that looks like a real OS window with a titlebar */
+.os-window {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.os-window-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.os-window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.os-window-dot-red   { background: #ff5f57; }
+.os-window-dot-yellow { background: #febc2e; }
+.os-window-dot-green  { background: #28c840; }
+
+.os-window-title {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.os-window-body {
+  padding: 16px;
+}
+
+/* ─── Legacy panel classes (kept for compat) ───────────── */
 .os-panel {
   background: var(--bg-panel);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .os-panel-bright {
   background: var(--bg-panel);
   border: 1px solid var(--border-bright);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
+/* ─── Terminal line ─────────────────────────────────────── */
+.terminal-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.terminal-line::before {
+  content: '>';
+  color: var(--accent-green);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─── HUD value ──────────────────────────────────────────── */
+.hud-value {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hud-label {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ─── Scanline overlay ───────────────────────────────────── */
+.scanline {
+  position: relative;
+}
+
+.scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── OS Grid background ─────────────────────────────────── */
 .os-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgba(0, 255, 136, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-.glow-green { box-shadow: 0 0 20px rgba(0, 255, 136, 0.15); }
-.glow-cyan { box-shadow: 0 0 20px rgba(0, 229, 255, 0.15); }
-.text-glow { text-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+/* ─── Glows ──────────────────────────────────────────────── */
+.glow-green  { box-shadow: 0 0 0 1px rgba(0,255,136,0.25), 0 0 18px rgba(0,255,136,0.12); }
+.glow-cyan   { box-shadow: 0 0 0 1px rgba(0,212,255,0.25), 0 0 18px rgba(0,212,255,0.12); }
+.text-glow   { text-shadow: 0 0 24px rgba(0,255,136,0.5); }
+.text-glow-cyan { text-shadow: 0 0 24px rgba(0,212,255,0.5); }
 
+/* ─── Gradient text ──────────────────────────────────────── */
 .gradient-text-green {
-  background: linear-gradient(135deg, #00ff88, #00e5ff);
+  background: linear-gradient(135deg, #00ff88, #00d4ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -85,30 +192,116 @@ body {
   background-clip: text;
 }
 
-.status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-.status-active { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
-.status-completed { background: #4466ff; box-shadow: 0 0 6px #4466ff; }
-.status-paused { background: #ff6b35; box-shadow: 0 0 6px #ff6b35; }
-.status-archived { background: #4a5260; }
+/* ─── Status dots ─────────────────────────────────────────── */
+.status-dot       { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.status-active    { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
+.status-completed { background: #4466ff; box-shadow: 0 0 8px #4466ff; }
+.status-paused    { background: #ff6b35; box-shadow: 0 0 8px #ff6b35; }
+.status-archived  { background: #3d4a57; }
 
+/* ─── Tag pill ────────────────────────────────────────────── */
 .tag-pill {
-  font-size: 0.65rem;
-  font-family: 'JetBrains Mono', monospace;
-  padding: 2px 8px;
-  border-radius: 99px;
+  font-size: 0.6rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  padding: 2px 7px;
+  border-radius: 3px;
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.02);
   white-space: nowrap;
+  letter-spacing: 0.04em;
 }
 
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
-@keyframes scanline { 0% { transform: translateY(-100%); } 100% { transform: translateY(100vh); } }
-@keyframes pulse-green { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+/* ─── Left-accent bar (category color on card edge) ──────── */
+.card-accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 6px 0 0 6px;
+}
 
-.animate-blink { animation: blink 1s step-end infinite; }
-.animate-fadeInUp { animation: fadeInUp 0.5s ease-out forwards; }
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+/* ─── Animations ─────────────────────────────────────────── */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* Glitch: rapid horizontal jitter with color fringing */
+@keyframes glitch {
+  0%   { clip-path: inset(0 0 95% 0); transform: translateX(0); }
+  5%   { clip-path: inset(10% 0 60% 0); transform: translateX(-4px); }
+  10%  { clip-path: inset(30% 0 40% 0); transform: translateX(4px); }
+  15%  { clip-path: inset(60% 0 10% 0); transform: translateX(-2px); }
+  20%  { clip-path: inset(80% 0 5%  0); transform: translateX(3px); }
+  25%  { clip-path: inset(0 0 0 0);     transform: translateX(0); }
+  100% { clip-path: inset(0 0 0 0);     transform: translateX(0); }
+}
+
+/* Scan: a bright horizontal bar sweeping down */
+@keyframes scan {
+  0%   { transform: translateY(-100%); opacity: 0.6; }
+  80%  { opacity: 0.6; }
+  100% { transform: translateY(200%); opacity: 0; }
+}
+
+/* Pulse border: glow intensity cycles */
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(0,255,136,0.15), 0 0 10px rgba(0,255,136,0.05); }
+  50%       { box-shadow: 0 0 0 1px rgba(0,255,136,0.5),  0 0 25px rgba(0,255,136,0.2); }
+}
+
+/* Typing: cursor blink inside typed text (use with overflow:hidden + width animation) */
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* Progress bar shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Pulse green glow for status indicators */
+@keyframes pulse-green {
+  0%, 100% { opacity: 0.5; box-shadow: 0 0 4px #00ff88; }
+  50%       { opacity: 1;   box-shadow: 0 0 10px #00ff88, 0 0 20px rgba(0,255,136,0.4); }
+}
+
+/* Boot-screen fade out */
+@keyframes bootFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; pointer-events: none; }
+}
+
+/* ─── Animation utility classes ──────────────────────────── */
+.animate-blink       { animation: blink 1s step-end infinite; }
+.animate-fadeInUp    { animation: fadeInUp 0.45s ease-out forwards; }
+.animate-fadeIn      { animation: fadeIn 0.4s ease-out forwards; }
+.animate-float       { animation: float 3s ease-in-out infinite; }
+.animate-pulse-green { animation: pulse-green 2.5s ease-in-out infinite; }
+.animate-pulse-border { animation: pulse-border 2.5s ease-in-out infinite; }
+.animate-boot-fadeout { animation: bootFadeOut 0.5s ease-out forwards; }
