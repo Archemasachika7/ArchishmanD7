@@ -80,7 +80,7 @@ export function BootScreen() {
       clearInterval(interval);
       [t1,t2,g1,g2,g3,g4,g5,g6].forEach(clearTimeout);
     };
-  }, [bootComplete, setBootComplete]);
+  }, [bootComplete, done, setBootComplete]);
 
   if (done) return null;
 
