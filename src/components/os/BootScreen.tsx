@@ -38,14 +38,14 @@ export function BootScreen() {
   const { bootComplete, setBootComplete } = useOSStore();
   const [lines, setLines]               = useState<typeof bootLines>([]);
   const [progress, setProgress]         = useState(0);
-  const [done, setDone]                 = useState(false);
+  const [done, setDone]                 = useState(() => bootComplete);
   const [fadingOut, setFadingOut]       = useState(false);
   const [asciiVisible, setAsciiVisible] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
   const [subVisible, setSubVisible]     = useState(false);
 
   useEffect(() => {
-    if (bootComplete) { setDone(true); return; }
+    if (bootComplete || done) return;
 
     const t1 = setTimeout(() => setAsciiVisible(true), 150);
     const t2 = setTimeout(() => setSubVisible(true),   600);

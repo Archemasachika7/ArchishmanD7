@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useOSStore } from "@/lib/store";
 import {
   LayoutGrid, BookOpen, Network, Archive, FlaskConical,
-  GitBranch, Settings, Menu, X, ChevronRight
+  GitBranch, Settings, Menu, X
 } from "lucide-react";
 
 const navItems = [
