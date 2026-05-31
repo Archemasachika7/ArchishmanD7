@@ -12,7 +12,6 @@ async function getProjects(): Promise<Project[]> {
   return fetchPublicProjects();
 }
 
-export const revalidate = 60;
 
 export default async function Page() {
   const projects = await getProjects();

@@ -3,7 +3,6 @@ import { GraphPage } from "@/components/graph/GraphPage";
 import { fetchKnowledgeGraph } from "@/lib/db";
 import { knowledgeNodes, knowledgeEdges } from "@/lib/data";
 
-export const revalidate = 300;
 
 export default async function Page() {
   let nodes = knowledgeNodes;

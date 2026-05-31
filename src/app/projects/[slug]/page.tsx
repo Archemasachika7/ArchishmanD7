@@ -4,7 +4,6 @@ import { fetchProjectBySlug, fetchPublicProjects } from "@/lib/db";
 import { getProjectBySlug, getPublicProjects } from "@/lib/data";
 import { notFound } from "next/navigation";
 
-export const revalidate = 60;
 
 export async function generateStaticParams() {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
